@@ -17,14 +17,9 @@ This project use `pnpm`, you can install dependencies likes this:
  ```
 
 ## Start localy
-You have to start mongodb:
-```sh
-docker-compose up -d
-```
+You have to write your own *env.sh* file, you can take a look to [env.template.sh](./env.template.sh) for inspiration.
 
-Then you have to write your own *env.sh* file, you can take a look to [env.template.sh](./env.template.sh) for inspiration.
-
-Finally, you have to start the node application:
+Then, you have to start the node application:
 ```sh
 npm start
 ```

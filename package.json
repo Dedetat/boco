@@ -17,6 +17,7 @@
     "koa-router": "^7.4.0",
     "koa-views": "^6.1.4",
     "node-fetch": "^2.1.2",
+    "pouchdb": "^7.0.0",
     "tough-cookie": "^2.4.3"
   },
   "devDependencies": {
