@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "handlebars": "^4.0.11",
     "koa": "^2.5.1",
+    "koa-body": "^4.0.4",
+    "koa-router": "^7.4.0",
+    "koa-views": "^6.1.4",
     "node-fetch": "^2.1.2",
     "tough-cookie": "^2.4.3"
   }
