@@ -1,0 +1,2 @@
+export FORTUNEO_LOGIN=
+export FORTUNEO_PASSWORD=

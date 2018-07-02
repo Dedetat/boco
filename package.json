@@ -1,0 +1,17 @@
+{
+  "name": "boco",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "Fabien JUIF <fabien.juif@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": ". env.sh && node ."
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "koa": "^2.5.1",
+    "node-fetch": "^2.1.2",
+    "tough-cookie": "^2.4.3"
+  }
+}
