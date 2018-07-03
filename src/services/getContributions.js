@@ -1,20 +1,32 @@
-const getContributionsBasedOnWages = ({ balance, wantedBalance, wages }) => {
-  const need = wantedBalance - balance
-  if (need <= 0) return []
+const getWagesDistribution = (state) => {
+  const {
+    wages,
+  } = state
 
   const totalWages = wages.reduce(
     (acc, curr) => acc + curr.value,
     0,
   )
 
-  const wagesDistribution = wages.reduce(
+  return wages.reduce(
     (acc, curr) => ({ ...acc, [curr.name]: curr.value / totalWages }),
     {},
   )
+}
+
+const getContributionsBasedOnWages = (state) => {
+  const {
+    balance,
+    wantedBalance,
+    wages,
+  } = state
+
+  const need = wantedBalance - balance
+  if (need <= 0) return []
 
   return wages.map(({ name }) => ({
     name,
-    value: Math.round((wagesDistribution[name] * need) * 100) / 100,
+    value: Math.round((getWagesDistribution(state)[name] * need) * 100) / 100,
   }))
 }
 
@@ -25,6 +37,7 @@ module.exports = (state) => {
     wages,
     rent,
     monthly,
+    rentPayer = 'delphine',
   } = state
 
   // in case this is not a monthly addition
@@ -38,19 +51,26 @@ module.exports = (state) => {
   }
 
   // this is a monthly addition
-  // - we add rent * number of person into the balance, since the balance is shared along all persons
-  // - if this is enough, then only the person that pay rent should add to the common account
-  // - if this is NOT enough, then we share the rest, and the person who pay the rent should pay the rent :)
-  const contributions = getContributionsBasedOnWages({ ...state, balance: balance + (rent * wages.length) })
+  // - rent has always to be paid
+  // - the rent payer should add its part (its contribution)
+  // - then the balance is completed until the wantedBalance is reached
+  const wagesDistribution = getWagesDistribution(state)
+  const distribution = wagesDistribution[rentPayer]
+  const rentWithContributionAdded = Math.round((rent + ((rent * distribution) / (1 - distribution))) * 100) / 100
+
+  // we add the rent (with corresponding contribution) to the balance
+  const contributions = getContributionsBasedOnWages({ ...state, balance: (balance + rentWithContributionAdded) })
+
+  // if this is enough to reach the wanted balance, then we only add that
   if (contributions.length === 0) {
-    return [
-      { name: 'delphine', value: (rent * wages.length) },
-      { name: 'fabien', value: 0 },
-    ]
+    return wages.map(({ name }) => ({
+      name,
+      value: name === rentPayer ? rentWithContributionAdded : 0,
+    }))
   }
 
-  // add the rent
-  contributions.find(({ name }) => name === 'delphine').value += (rent * wages.length)
+  // otherwise, we add the rent with contribution added to reach the wanted balance
+  contributions.find(({ name }) => name === rentPayer).value += rentWithContributionAdded
 
   return contributions
 }

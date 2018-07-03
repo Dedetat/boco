@@ -58,7 +58,7 @@ describe('getContributions', () => {
         { name: 'fabien', value: 40 },
       ],
     })([
-      { name: 'delphine', value: 1000 },
+      { name: 'delphine', value: 1250 }, // (rent 500) + (contribution based on rent: 750)
       { name: 'fabien', value: 0 },
     ])
 
@@ -73,7 +73,7 @@ describe('getContributions', () => {
         { name: 'fabien', value: 40 },
       ],
     })([
-      { name: 'delphine', value: 1000 },
+      { name: 'delphine', value: 1250 }, // (rent 500) + (contribution based on rent: 750)
       { name: 'fabien', value: 0 },
     ])
 
@@ -84,12 +84,12 @@ describe('getContributions', () => {
       wantedBalance: 1100,
       rent: 500,
       wages: [
-        { name: 'delphine', value: 60 },
-        { name: 'fabien', value: 40 },
+        { name: 'delphine', value: 40 },
+        { name: 'fabien', value: 60 },
       ],
     })([
-      { name: 'delphine', value: 1060 },
-      { name: 'fabien', value: 40 },
+      { name: 'delphine', value: 940 }, // (rent 500) + (contribution based on rent: 333.33) + (contribution to reach balance: 106.8)
+      { name: 'fabien', value: 160 }, // (contribution to reach balance: 160.2)
     ])
   })
 })
