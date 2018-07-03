@@ -34,6 +34,7 @@ module.exports = async () => {
   if (retry >= MAX_SOLDE_RETRY) {
     const error = new Error('retry_exceed')
     error.payload = { max: MAX_SOLDE_RETRY }
+    console.trace(error)
     throw error
   }
 

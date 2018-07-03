@@ -6,7 +6,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": ". env.sh && node ."
+    "start": ". env.sh && node .",
+    "test": "jest"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
@@ -17,5 +18,11 @@
     "koa-views": "^6.1.4",
     "node-fetch": "^2.1.2",
     "tough-cookie": "^2.4.3"
+  },
+  "devDependencies": {
+    "jest": "^23.2.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
