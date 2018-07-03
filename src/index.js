@@ -8,6 +8,8 @@ const views = require('./views')
 const PORT = process.env.PORT || 3000
 const LISTEN_HOST = process.env.LISTEN_HOST || '0.0.0.0'
 
+process.on('unhandledRejection', error => { console.trace(error) })
+
 const app = new Koa()
 
 app.use(bodyParser({ multipart: true, urlencoded: true, strict: false }))

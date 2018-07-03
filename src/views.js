@@ -1,33 +1,33 @@
 const Router = require('koa-router')
 const getSolde = require('./services/getSolde')
 const getContributions = require('./services/getContributions')
+const configuration = require('./services/configuration')
 
 const router = new Router()
 
 const render = async (ctx) => {
-  const balance = ctx.state.balance || (await getSolde()).data
+  const config = await configuration.get()
 
-  // TODO: from database
   ctx.state = {
-    balance: balance.data,
-    wantedBalance: 500,
-    wages: [
-      { name: 'delphine', value: 90 },
-      { name: 'fabien', value: 100 },
-    ],
-    rent: 361,
+    ...config,
     ...ctx.state,
   }
 
   await ctx.render('index')
 }
 
-router.get('/', render)
+router.get('/', async (ctx) => {
+  ctx.state = {
+    balance: (await getSolde()).data
+  }
+
+  await render(ctx)
+})
+
 router.post('/', async (ctx) => {
   const { body } = ctx.request
 
-  // TODO: save to database
-  const configuration = {
+  const config = {
     wages: [
       { name: 'delphine', value: +body['wage-delphine'] },
       { name: 'fabien', value: +body['wage-fabien'] },
@@ -37,10 +37,10 @@ router.post('/', async (ctx) => {
     balance: (await getSolde()).data,
     wantedBalance: +body['wanted-balance'],
   }
+  await configuration.put(config)
 
   ctx.state = {
-    ...configuration,
-    contributions: getContributions(configuration),
+    contributions: getContributions(config),
   }
 
   await render(ctx)
