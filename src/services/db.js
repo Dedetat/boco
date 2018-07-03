@@ -11,7 +11,7 @@ if (!DB_PATH) {
 // singleton
 let _db
 const getDb = () => {
-  if (!_db) _db = new PouchDB(path.resolve(DB_PATH, 'db'))
+  if (!_db) _db = new PouchDB(path.resolve(DB_PATH, 'db'), { revs_limit: 1 })
   return _db
 }
 
