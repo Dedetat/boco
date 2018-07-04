@@ -6,8 +6,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": ". env.sh && node .",
-    "test": "jest"
+    "start": "node -r dotenv/config .",
+    "test": "jest",
+    "build": "docker build --rm -t fabienjuif/boco ."
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
@@ -21,6 +22,7 @@
     "tough-cookie": "^2.4.3"
   },
   "devDependencies": {
+    "dotenv": "^6.0.0",
     "jest": "^23.2.0"
   },
   "jest": {
