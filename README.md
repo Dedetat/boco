@@ -23,9 +23,3 @@ Then, you have to start the node application:
 ```sh
 npm start
 ```
-
-## API
-
-| method | uri | description |
-| -- | -- | -- |
-| `GET` | `/api/solde` | get current solde |
