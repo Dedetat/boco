@@ -8,7 +8,7 @@ const FORTUNEO_LOGIN = process.env.FORTUNEO_LOGIN
 const FORTUNEO_PASSWORD = process.env.FORTUNEO_PASSWORD
 
 if (FORTUNEO_LOGIN === undefined || FORTUNEO_PASSWORD === undefined) {
-  console.error("Both FORTUNEO_LOGIN and FORTUNEO_PASSWORD environment vairables should be set")
+  console.error("Both FORTUNEO_LOGIN and FORTUNEO_PASSWORD environment variables should be set")
   process.exit(-1)
 }
 
