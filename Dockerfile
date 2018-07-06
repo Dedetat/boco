@@ -8,7 +8,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 RUN npm install -g pnpm
 
-COPY package.json .
+COPY package.json shrinkwrap.yaml ./
 RUN pnpm install --production
 
 COPY . ./
