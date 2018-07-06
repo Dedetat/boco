@@ -9,6 +9,7 @@ dependencies:
   pouchdb: 7.0.0
   tough-cookie: 2.4.3
 devDependencies:
+  dotenv: 6.0.0
   jest: 23.2.0
 packages:
   /@babel/code-frame/7.0.0-beta.51:
@@ -1032,6 +1033,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Lgd2XcJ/NjEw+7tFvfKxOzCYKZsdct5lczQ2ZaQY8Djz7pfAD3Gbp8ySJWtreII/vDlMVmxwa6pHmdxIYgttDg==
+  /dotenv/6.0.0:
+    dev: true
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-FlWbnhgjtwD+uNLUGHbMykMOYQaTivdHEmYwAKFjn6GKe/CqY0fNae93ZHTd20snh9ZLr8mTzIL9m0APQ1pjQg==
   /double-ended-queue/2.1.0-0:
     dev: false
     resolution:
@@ -4415,6 +4422,7 @@ shrinkwrapMinorVersion: 8
 shrinkwrapVersion: 3
 specifiers:
   cheerio: ^1.0.0-rc.2
+  dotenv: ^6.0.0
   handlebars: ^4.0.11
   jest: ^23.2.0
   koa: ^2.5.1

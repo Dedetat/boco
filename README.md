@@ -17,7 +17,7 @@ This project use `pnpm`, you can install dependencies likes this:
  ```
 
 ## Start localy
-You have to write your own *env.sh* file, you can take a look to [env.template.sh](./env.template.sh) for inspiration.
+You have to write your own *.env* file, you can take a look to [template.env](./template.env) for inspiration.
 
 Then, you have to start the node application:
 ```sh

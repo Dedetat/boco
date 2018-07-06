@@ -1,0 +1,10 @@
+version: '3'
+services:
+  boco:
+    image: fabienjuif/boco
+    ports:
+      - 3000:3000
+    volumes:
+      - ${PWD}/db:/app/db
+    env_file:
+      - .env
