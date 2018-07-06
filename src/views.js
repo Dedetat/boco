@@ -1,5 +1,5 @@
 const Router = require('koa-router')
-const getSolde = require('./services/getSolde')
+const getBalance = require('./services/getBalance')
 const getContributions = require('./services/getContributions')
 const configuration = require('./services/configuration')
 
@@ -18,7 +18,7 @@ const render = async (ctx) => {
 
 router.get('/', async (ctx) => {
   ctx.state = {
-    balance: (await getSolde()).data
+    balance: (await getBalance()).data
   }
 
   await render(ctx)
@@ -34,7 +34,7 @@ router.post('/', async (ctx) => {
     ],
     rent: +body['rent'],
     monthly: body['monthly'] === 'on',
-    balance: (await getSolde()).data,
+    balance: (await getBalance()).data,
     wantedBalance: +body['wanted-balance'],
   }
   await configuration.put(config)

@@ -2,7 +2,6 @@ const path = require('path')
 const Koa = require('koa')
 const bodyParser = require('koa-body')
 const viewsMiddleware = require('koa-views')
-const api = require('./api')
 const views = require('./views')
 
 const PORT = process.env.PORT || 3000
@@ -24,7 +23,6 @@ app.use(viewsMiddleware(
   },
 ))
 
-app.use(api.routes()).use(api.allowedMethods())
 app.use(views.routes())
 
 const server = app.listen(PORT, LISTEN_HOST, () => {
