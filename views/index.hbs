@@ -1,49 +1,74 @@
-<html>
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
   <head>
     <title>BoCo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      .balance {
+        position: absolute;
+        right: .5em;
+        top: .75em;
+        color: white;
+      }
+
+      .contributions {
+        padding-bottom: 0;
+      }
+    </style>
   </head>
   <body>
-    {{#if contributions}}
-      <div class="contributions">
-        <h1>Contributions</h1>
-        {{#each contributions}}
-          <div class="contribution">{{name}} should add {{value}} €</div>
-        {{/each}}
+    <nav class="navbar is-primary is-fixed-top">
+      <div class="navbar-brand">
+        <h1 class="navbar-item title">
+          BoCo
+        </h1>
       </div>
+      <div class="balance navbar-item">
+        {{balance}} €
+      </div>
+    </nav>
+
+    {{#if contributions}}
+      <section class="section contributions">
+        <h1 class="title">Contributions</h1>
+        {{#each contributions}}
+          <div><strong>{{name}}</strong> should add {{value}} €</div>
+        {{/each}}
+      </section>
     {{/if}}
 
-    <div class="configuration">
+    <section class="section">
       {{#if contributions}}
-      <h1>Configuration</h1>
+      <h1 class="title">Configuration</h1>
       {{/if}}
-
-      <div class="balance">
-        <label>Current balance is</label>
-        <span>{{balance}} €</span>
-      </div>
 
       <form action="/" method="post">
         {{#each wages}}
-          <div class="wage">
-            <label>{{name}}</label>
-            <input type='number' value={{value}} name='wage-{{name}}' />
+          <div class="field">
+            <label class="label">{{name}}</label>
+            <input class="input"type='number' value={{value}} name='wage-{{name}}' />
           </div>
         {{/each}}
-        <div class="rent">
-          <label>Rent</label>
-          <input type='number' value={{rent}} name='rent' />
+        <div class="field">
+          <label class="label">Rent</label>
+          <div class="control">
+            <input class="input"type='number' value={{rent}} name='rent' />
+          </div>
         </div>
-        <div class="monthly">
-          <input type='checkbox' checked name='monthly' />
-          <label>This is a montly addition</label>
+        <div class="field">
+          <label class="checkbox">
+            <input class="checkbox"type='checkbox' checked name='monthly' />
+            This is a montly addition
+          </label>
         </div>
-        <div class="wanted-balance">
-          <label>Wanted balance</label>
-          <input type='number' value={{wantedBalance}} name='wanted-balance'>
+        <div class="field">
+          <label class="label">Wanted balance</label>
+          <input class="input"type='number' value={{wantedBalance}} name='wanted-balance'>
         </div>
 
-        <button class="submit-configuration" type="submit">Send</button>
+        <button class="button is-link" type="submit">Send</button>
       </form>
-    </div>
+    </section>
   </body>
 </html>
