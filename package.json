@@ -10,20 +10,23 @@
     "test": "jest",
     "build": "docker build --rm -t fabienjuif/boco ."
   },
+  "engines": {
+    "node": "<=11"
+  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
-    "handlebars": "^4.0.11",
-    "koa": "^2.5.1",
-    "koa-body": "^4.0.4",
+    "handlebars": "^4.1.2",
+    "koa": "^2.7.0",
+    "koa-body": "^4.1.0",
     "koa-router": "^7.4.0",
-    "koa-views": "^6.1.4",
-    "node-fetch": "^2.1.2",
+    "koa-views": "^6.2.0",
+    "node-fetch": "^2.6.0",
     "pouchdb": "^7.0.0",
-    "tough-cookie": "^2.4.3"
+    "tough-cookie": "^3.0.1"
   },
   "devDependencies": {
-    "dotenv": "^6.0.0",
-    "jest": "^23.2.0"
+    "dotenv": "^8.0.0",
+    "jest": "^24.8.0"
   },
   "jest": {
     "testEnvironment": "node"
